@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar target/menu_proposer-0.0.1-SNAPSHOT.jar
+web: java -jar target/menu_propser.jar --server.port=${PORT}
