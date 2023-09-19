@@ -21,7 +21,7 @@ public class MenuDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public ArrayList<String> getMenuList() {
+    public ArrayList<String> getOneMenu() {
         String sql = "SELECT menu_name FROM menu_list ORDER BY RAND() LIMIT 1";
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
 
@@ -32,7 +32,7 @@ public class MenuDao {
         return menuList;
     }
 
-    public ArrayList<String> getDetailList(String[] genres, String[] categories, Integer count) {
+    public ArrayList<String> getMenuList(String[] genres, String[] categories, Integer count) {
         String sql = "SELECT menu_name FROM menu_view WHERE genre_name IN (:genres) \n" 
         		+"AND category_name IN (:categories) ORDER BY RAND() LIMIT :count";
         Map<String, Object> paramMap = new HashMap<>();

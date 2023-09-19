@@ -6,10 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.dao.MenuDao;
 
+@RequestMapping("/menu")
 @Controller
 public class MenuTopController {
 
@@ -20,7 +22,7 @@ public class MenuTopController {
 		this.menuDao = menuDao;
 	}
 
-	@GetMapping("/menu")
+	@GetMapping
 	public String showMenuForm(Model model) {
 		String[] genres = { "和食", "中華料理", "洋食", "韓国料理", "ファーストフード", "その他" };
 		String[] categories = { "肉", "魚", "野菜", "ご飯もの", "麺類", "パン", "スープ・汁物", "その他" };
@@ -29,7 +31,7 @@ public class MenuTopController {
 		return "menuTop";
 	}
 
-	@PostMapping("/menu")
+	@PostMapping
 	public String processMenuForm(Model model, @RequestParam(value = "全検索", required = false) String all,
 			@RequestParam(value = "詳細検索", required = false) String detail,
 			@RequestParam(value = "genre", required = false) String[] genres,
@@ -44,7 +46,7 @@ public class MenuTopController {
 				if (all != null) {
 					// 全検索の処理
 					//ArrayList<String> menuList = new MenuService().requestOne();
-					ArrayList<String> menuList = menuDao.getMenuList();
+					ArrayList<String> menuList = menuDao.getOneMenu();
 					model.addAttribute("menuList", menuList);
 					showMenuForm(model);
 				} else if (genres == null || categories == null || genres.length == 0 || categories.length == 0) {
@@ -55,7 +57,7 @@ public class MenuTopController {
 				} else if (detail != null) {
 					// 詳細検索の処理
 					//ArrayList<String> menuList = new MenuService().detailRequest(genres, categories, count);
-					ArrayList<String> menuList = menuDao.getDetailList(genres, categories, count);
+					ArrayList<String> menuList = menuDao.getMenuList(genres, categories, count);
 					model.addAttribute("menuList", menuList);
 					model.addAttribute("genre", genres);
 					model.addAttribute("category", categories);
