@@ -32,7 +32,8 @@ public class MenuTopController {
 	}
 
 	@PostMapping
-	public String processMenuForm(Model model, @RequestParam(value = "全検索", required = false) String all,
+	public String processMenuForm(Model model, 
+			@RequestParam(value = "全検索", required = false) String all,
 			@RequestParam(value = "詳細検索", required = false) String detail,
 			@RequestParam(value = "genre", required = false) String[] genres,
 			@RequestParam(value = "category", required = false) String[] categories,

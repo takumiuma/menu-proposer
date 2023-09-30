@@ -18,10 +18,9 @@
     </div>
 </header>
 <main>
-	<div th:if="message != null"></div>
-    <div class="container text-center">
+    <div class="container-fluid px-0 text-center">
         <div class="row">
-            <div class="col">
+            <div class="col-lg-6">
                 <div class="alert alert-primary" role="alert">
                     <form th:action="@{/menu}" method="post" >
                         <p>150種を超えるメニューから1つを提案します</p>
@@ -32,7 +31,7 @@
                     <form th:action="@{/menu}" method="post">
                         <p>あなたのお好みのメニューだけを厳選します</p>
                         <div class="card-group">
-                            <div class="card" style="width: 18rem;">
+                            <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">ジャンル</h5>
                                     <p class="check-text">
@@ -67,7 +66,7 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="card" style="width: 18rem;">
+                            <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">カテゴリ</h5>
                                     <p class="check-text">
@@ -130,11 +129,12 @@
                     </form>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-lg-6">
+             <!-- <div class="msg" th:if="${message != null}"><p th:text="${message}"></p></div> -->
                 <th:block th:if="${menuList != null and menuList.size() > 0}">
                     <h3>【検索結果】</h3>
                     <div>
-                        <table class="menu_table table-striped">
+                        <table id="Table" class="table table-striped">
                             <thead>
                             <tr>
                                 <th>メニュー</th>
