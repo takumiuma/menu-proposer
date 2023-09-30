@@ -10,14 +10,9 @@
 h3 {
 	font-family: -apple-system;
 }
-#Table{
-}
-#Table td,
-#Table th{
-}
-@media only screen and (max-width:400px){
-	#Table {
-	}
+
+@media only screen and (max-width:450px){
+
 	#Table th{
 		display:none;
 	}
