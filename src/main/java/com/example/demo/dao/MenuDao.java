@@ -50,4 +50,14 @@ public class MenuDao {
         }
         return menuList;
     }
+    
+    public List<Map<String, Object>> getAllMenu() {
+        String sql = "SELECT * FROM menu_list";
+        List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
+        ArrayList<String> menuList = new ArrayList<>();
+        for (Map<String, Object> row : rows) {
+            menuList.add((String) row.get("menu_name"));
+        }
+        return rows;
+    }
 }
