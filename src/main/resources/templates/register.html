@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ユーザー登録 | メニュー提案アプリ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+          crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body class="container" style="max-width: 480px; margin-top: 60px;">
+
+    <h1 class="display-6 mb-4 text-center">ユーザー登録</h1>
+
+    <!-- エラーメッセージ -->
+    <div th:if="${errorMsg}" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <span th:text="${errorMsg}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <form th:action="@{/register}" method="post">
+        <div class="mb-3">
+            <label for="username" class="form-label fw-bold">ユーザー名 <span class="text-danger">*</span></label>
+            <input type="text" id="username" name="username" class="form-control"
+                   placeholder="例：taro_yamada" required maxlength="50">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label fw-bold">パスワード <span class="text-danger">*</span></label>
+            <input type="password" id="password" name="password" class="form-control"
+                   placeholder="6文字以上" required minlength="6">
+        </div>
+        <div class="mb-4">
+            <label for="confirmPassword" class="form-label fw-bold">パスワード（確認） <span class="text-danger">*</span></label>
+            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
+                   placeholder="もう一度入力してください" required minlength="6">
+        </div>
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary">登録する</button>
+        </div>
+    </form>
+
+    <hr class="my-4">
+    <p class="text-center text-muted">
+        すでにアカウントをお持ちですか？
+        <a th:href="@{/login}">ログインはこちら</a>
+    </p>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-/mhDoLbDldZc3qpsJHpLogda//BVZbgYuw6kof4u2FrCedxOtgRZDTHgHUhOCVim"
+            crossorigin="anonymous"></script>
+</body>
+</html>

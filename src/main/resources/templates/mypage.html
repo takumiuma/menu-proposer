@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="https://www.thymeleaf.org"
-	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title th:text="${title}"></title>
@@ -10,11 +10,25 @@
           rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
           crossorigin="anonymous">
 </head>
-<body class="container">
-	<h1 class="display-4 mb-4" th:text="${title}"></h1>
-	<div class="border border-1 p-3">
-		<p class="h6" th:text="${msg}"></p>
-		<p>ログアウトは <a th:href="@{/logout}">こちら</a>から</p>
+<body class="container" style="max-width: 520px; margin-top: 40px;">
+	<h1 class="display-6 mb-4" th:text="${title}"></h1>
+	<div class="border border-1 p-4 rounded">
+		<p class="text-muted" th:text="${msg}"></p>
+
+		<div class="d-grid gap-2">
+			<!-- 管理者（ROLE_ADMIN）のみ表示 -->
+			<a th:href="@{/addMenu}" class="btn btn-danger"
+			   sec:authorize="hasRole('ADMIN')">
+				🍽️ メニューを追加する（管理者）
+			</a>
+			<!-- 全ログインユーザーに表示 -->
+			<a th:href="@{/menu}" class="btn btn-primary">
+				🔍 メニューを探す
+			</a>
+			<a th:href="@{/logout}" class="btn btn-outline-secondary">
+				ログアウト
+			</a>
+		</div>
 	</div>
 </body>
 </html>
